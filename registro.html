@@ -1,0 +1,115 @@
+
+<!DOCTYPE HTML>
+<html lang="es">
+    <head>
+    <title>Formulario de Registro</title>
+    <meta charset="UTF-8">
+    <style type="text/css">
+    * {
+    box-sizing: border-box;
+}
+body {
+    font-family: arial;
+    background: #000;
+    color: #fff;
+}
+h1, h2 {
+    text-align: center;
+    font-weight: normal;
+}
+form {
+    width: 100%;
+    max-width: 500px;
+    background: rgba(255,255,0,0.3);
+    margin: 40px auto;
+    border: 4px solid gold;
+    box-shadow: 0px 5px 50px gold;
+    border-radius: 10px;
+}
+input {
+    display: block;
+    width: 80%;
+    font-size: 16px;
+    padding: 10px;
+    margin: 10px auto;
+}
+input[type="submit"] {
+    background: radial-gradient(gold, silver);
+    border-radius: 20px;
+    cursor: pointer;
+    width: 55%;
+}
+input[type="submit"]:hover {
+    opacity: 0.8;
+}
+input[type="submit"]:active {
+    transform: scale(0.95);
+}
+form p, a {
+    display: block;
+    text-align: center;
+}
+form a {
+    text-decoration: none;
+    color: red;
+}
+    </style>
+    <script>
+        
+          function validar() {
+
+    //Creamos variables
+    
+    var nombre = document.form.nombre.value;
+    var apellidos = document.form.apellidos.value;
+    var correo = document.form.correo.value;
+    var usuario = document.form.usuario.value;
+    var clave = document.form.clave.value;
+    var telefono = document.form.telefono.value;
+
+    //condiciones necesarias para validar inputs, no es necesario poner "else" si se trabaja con booleans
+
+    if (nombre == "" || apellidos == "" || correo == "" || usuario == "" || clave == "" || telefono == "") {
+        alert("Todos los campos son obligatorios");
+        return false;
+    } 
+        if (nombre.length > 20) {
+            alert("Error. El nombre no puede contener más de 20 caracteres");
+            return false;
+        }
+        if (apellidos.length > 50) {
+            alert("Error. Los apellidos no pueden contener más de 50 caracteres");
+            return false;
+        }
+        if (correo.indexOf('@') < 3) {
+            alert("Error. El email debe contener el símbolo '@'");
+            return false;
+        }
+        if (correo.indexOf('.com') < 5 && correo.indexOf('.gov') < 5) {
+            alert("Error. El email debe contener el sufijo '.com' o '.gov'");
+            return false;
+        } else {
+            return true;
+        } 
+    }
+
+     //Fin de la validación
+    </script> 
+    </head>
+    <body>
+        <form method="POST" action="registrar.php" name="form">
+         <h1>Formulario de registro</h1>
+           <h2>Crea tu cuenta</h2>
+           <div>
+            <input type="text" id="nombre" name="nombre" placeholder="Nombre">
+            <input type="text" id="apellidos" name="apellidos" placeholder="Apellido">
+            <input type="email" id="correo" name="correo" placeholder="Correo">
+            <input type="text" id="usuario" name="usuario" placeholder="Usuario">
+            <input type="password" id="clave" name="clave" placeholder="Clave">
+            <input type="text" id="telefono" name="telefono" placeholder="Telefono">
+            <input type="submit" onclick="return validar()" value="Registrarse">  
+            <p>Ya tienes una cuenta? <a href="login.html">Ingresa aquí</a></p>
+           </div>
+        </form>   
+    </body>
+</html>
